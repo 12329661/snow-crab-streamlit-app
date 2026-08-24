@@ -1,0 +1,22 @@
+[project]
+name = "mfsnowcrab"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Mia Richardson", email = "mrich116@charlotte.edu" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.11.1",
+    "pandas>=3.0.5",
+    "plotly>=6.9.0",
+    "seaborn>=0.13.2",
+    "streamlit>=1.62.0",
+]
+
+[project.scripts]
+mfsnowcrab = "mfsnowcrab:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
