@@ -28,6 +28,20 @@ An interactive Streamlit dashboard for exploring Alaskan snow crab catch survey 
 - Sex ratio breakdown (pie or bar chart)
 - Sidebar filters for year range and sex
 
+## Screenshots
+
+**Dataset overview** — shape, column dtypes, and missing-value counts for the loaded CSV.
+![Dataset overview](screenshots/overview.png)
+
+**Catch locations map** — every haul plotted by latitude/longitude and colored by sex.
+![Catch locations map](screenshots/map.png)
+
+**Trends by year** — catch count per year across the full 1975-2018 survey period.
+![Trends by year](screenshots/trends.png)
+
+**Sidebar filters** — year range and sex filters narrowed to 1975-2001, updating the average bottom temperature trend accordingly.
+![Sidebar filters in action](screenshots/filters.png)
+
 ## Setup
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
