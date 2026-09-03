@@ -4,7 +4,9 @@ An interactive Streamlit dashboard for exploring Alaskan snow crab catch survey 
 
 ## 🔗 Live App
 
-**[Open the live dashboard](https://pcwljtk--mfsnowcrab-streamlit-run.modal.run)** — no setup required, runs on [Modal](https://modal.com).
+**[Open the live dashboard](https://pcwljtk--mfsnowcrab-streamlit-run.modal.run)**
+
+Hosted on [Modal](https://modal.com) — just click and go, nothing to install.
 
 ## Data
 
@@ -47,7 +49,9 @@ The dashboard reads live from a Supabase Postgres table (`snow crab data`). The 
 **Sidebar filters** — year range and sex filters narrowed to 1975-2001, updating the average bottom temperature trend accordingly.
 ![Sidebar filters in action](screenshots/filters.png)
 
-## Setup
+## Local Development
+
+Most people don't need this — just use the [live app](https://pcwljtk--mfsnowcrab-streamlit-run.modal.run) above. These steps are only for making changes to the code.
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
@@ -73,13 +77,13 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
    SUPABASE_TABLE=snow crab data
    ```
 
-## Run
+5. Run it locally:
 
-```bash
-uv run streamlit run app.py
-```
+   ```bash
+   uv run streamlit run app.py
+   ```
 
-Streamlit will start a local server and print a URL (typically http://localhost:8501) — open it in your browser.
+   Streamlit will start a local server and print a URL (typically http://localhost:8501) — open it in your browser.
 
 ## Deployment
 
