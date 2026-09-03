@@ -2,9 +2,13 @@
 
 An interactive Streamlit dashboard for exploring Alaskan snow crab catch survey data (1975-2018).
 
+## 🔗 Live App
+
+**[Open the live dashboard](https://pcwljtk--mfsnowcrab-streamlit-run.modal.run)** — no setup required, runs on [Modal](https://modal.com).
+
 ## Data
 
-`mfsnowcrab.csv` contains snow crab catch records with the following columns:
+The dashboard reads live from a Supabase Postgres table (`snow crab data`). The original `mfsnowcrab.csv` (used to seed that table) contains the same records, with the following columns:
 
 | Column | Description |
 | --- | --- |
@@ -21,6 +25,7 @@ An interactive Streamlit dashboard for exploring Alaskan snow crab catch survey 
 
 ## Features
 
+- Live data loaded from Supabase on every run (no static CSV bundled with the app)
 - Dataset overview: shape, dtypes, missing values, summary statistics
 - Map of catch locations, colored by sex or year
 - Yearly trend chart (catch count or average bottom temperature)
@@ -30,7 +35,7 @@ An interactive Streamlit dashboard for exploring Alaskan snow crab catch survey 
 
 ## Screenshots
 
-**Dataset overview** — shape, column dtypes, and missing-value counts for the loaded CSV.
+**Dataset overview** — shape, column dtypes, and missing-value counts for the data loaded from Supabase.
 ![Dataset overview](screenshots/overview.png)
 
 **Catch locations map** — every haul plotted by latitude/longitude and colored by sex.
@@ -60,6 +65,14 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
    uv sync
    ```
 
+4. Create a `.env` file in the project root with your Supabase credentials:
+
+   ```
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_KEY=your-anon-key
+   SUPABASE_TABLE=snow crab data
+   ```
+
 ## Run
 
 ```bash
@@ -67,3 +80,17 @@ uv run streamlit run app.py
 ```
 
 Streamlit will start a local server and print a URL (typically http://localhost:8501) — open it in your browser.
+
+## Deployment
+
+The app is deployed on [Modal](https://modal.com) via `serve_streamlit.py`, which builds a container image, mounts `app.py`, and serves it with `@modal.web_server`. Supabase credentials are injected at runtime from a Modal secret (`supabase-credentials`) rather than being bundled into the image.
+
+To redeploy after changes:
+
+```bash
+uv run modal secret create supabase-credentials \
+  SUPABASE_URL=... SUPABASE_KEY=... SUPABASE_TABLE="snow crab data"   # first time only
+uv run modal deploy serve_streamlit.py
+```
+
+`modal deploy` prints the live URL — currently [pcwljtk--mfsnowcrab-streamlit-run.modal.run](https://pcwljtk--mfsnowcrab-streamlit-run.modal.run).
